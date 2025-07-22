@@ -1,0 +1,51 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-bg: #0a0a0f;
+  --secondary-bg: #1a1a2e;
+  --accent-bg: #16213e;
+  --card-bg: rgba(26, 26, 46, 0.8);
+  --primary-text: #e0e0e0;
+  --secondary-text: #b0b0b0;
+  --accent-color: #00d4aa;
+  --accent-hover: #00b894;
+  --warning-color: #ff6b6b;
+  --success-color: #51cf66;
+  --border-color: #2d3748;
+  --glow-color: rgba(0, 212, 170, 0.3);
+  --shadow-dark: rgba(0, 0, 0, 0.5);
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+  color: var(--primary-text);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Animated background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(0, 212, 170, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 212, 170, 0.1) 0%, transparent 50%);
+  z-index: -1;
+  animation: backgroundPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundPulse {
+  0% { opacity: 0.5; }
+  100% { opacity: 0.8; }
+}
