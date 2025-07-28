@@ -26,11 +26,11 @@ services:
           cpus: '0.5'
           memory: 512M
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ] # Sử dụng endpoint health mặc định
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/api/status" ] # Sử dụng endpoint status
       interval: 10s
       timeout: 5s
       retries: 3
-      start_period: 90s
+      start_period: 30s
     networks:
       # Thêm network
       - app-network
