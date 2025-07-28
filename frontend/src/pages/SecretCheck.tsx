@@ -13,7 +13,7 @@ const SecretCheck: React.FC = () => {
         `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/secret`
       )
       .then((res) => {
-        setSecret(res.data);
+        setSecret(res.data.message);
         setIsLoading(false);
         setHasError(false);
       })

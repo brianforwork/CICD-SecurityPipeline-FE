@@ -12,7 +12,7 @@ const Status: React.FC = () => {
         `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/api/status`
       )
       .then((res) => {
-        setStatus(res.data);
+        setStatus(res.data.status);
         setIsLoading(false);
       })
       .catch(() => {

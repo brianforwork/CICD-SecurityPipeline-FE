@@ -1,0 +1,41 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - 3000:80
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      # Thêm network
+      - app-network
+    volumes:
+      # Thêm volume để debug
+      - ./frontend/nginx.conf:/etc/nginx/nginx.conf:ro
+
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      - APP_SECRET=${APP_SECRET}
+      - ALLOWED_ORIGINS=http://localhost,http://frontend
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/api/status" ] # Sử dụng endpoint status
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    networks:
+      # Thêm network
+      - app-network
+
+networks:
+  # Khai báo network
+  app-network:
+    driver: bridge
