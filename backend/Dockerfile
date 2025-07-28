@@ -22,7 +22,7 @@ RUN mvn package -DskipTests
 # --- Giai đoạn 2: Chạy ứng dụng ---
 # Sử dụng một image Java Runtime Environment (JRE) nhỏ gọn hơn để chạy.
 # Điều này giúp image cuối cùng có kích thước nhỏ và an toàn hơn.
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:17-jre
 
 # Đặt thư mục làm việc
 WORKDIR /app

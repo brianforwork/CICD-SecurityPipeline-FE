@@ -1,16 +1,16 @@
-version: '3.8'
-
 services:
   frontend:
     build: ./frontend
     ports:
-      - "80:80"
+      - 3000:80
     depends_on:
       backend:
         condition: service_healthy
-    networks:  # Thêm network
+    networks:
+      # Thêm network
       - app-network
-    volumes:   # Thêm volume để debug
+    volumes:
+      # Thêm volume để debug
       - ./frontend/nginx.conf:/etc/nginx/nginx.conf:ro
 
   backend:
@@ -26,14 +26,16 @@ services:
           cpus: '0.5'
           memory: 512M
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]  # Sử dụng endpoint health mặc định
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ] # Sử dụng endpoint health mặc định
       interval: 10s
       timeout: 5s
       retries: 3
       start_period: 90s
-    networks:  # Thêm network
+    networks:
+      # Thêm network
       - app-network
 
-networks:  # Khai báo network
+networks:
+  # Khai báo network
   app-network:
     driver: bridge
